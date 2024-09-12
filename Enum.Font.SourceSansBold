@@ -55,6 +55,55 @@ tween2.Completed:Wait()
 -- Hide splash screen after animation
 SplashScreen:Destroy()
 
+-- Create ScreenGui
+local screenGui = Instance.new("ScreenGui")
+screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+-- Create the main frame for the transparent GUI (made longer)
+local mainFrame = Instance.new("Frame")
+mainFrame.Size = UDim2.new(0.5, 0, 0.4, 0)  -- Height increased from 0.3 to 0.4
+mainFrame.Position = UDim2.new(0.25, 0, 0.3, 0)  -- Adjust position to fit
+mainFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+mainFrame.BackgroundTransparency = 0.5
+mainFrame.Parent = screenGui
+
+-- Create a text label for the message
+local messageLabel = Instance.new("TextLabel")
+messageLabel.Size = UDim2.new(1, 0, 0.6, 0)
+messageLabel.Position = UDim2.new(0, 0, 0, 0)
+messageLabel.BackgroundTransparency = 1
+messageLabel.Text = "V2 Is coming soon because I'm now out of ideas so I thought about updating the scripts :P"
+messageLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+messageLabel.TextScaled = true
+messageLabel.Parent = mainFrame
+
+-- Create "YAY 😱" button
+local yayButton = Instance.new("TextButton")
+yayButton.Size = UDim2.new(0.4, 0, 0.2, 0)
+yayButton.Position = UDim2.new(0.05, 0, 0.75, 0)  -- Adjusted position for longer GUI
+yayButton.BackgroundColor3 = Color3.fromRGB(0, 170, 0)
+yayButton.Text = "YAY 😱"
+yayButton.TextScaled = true
+yayButton.Parent = mainFrame
+
+-- Create "Idc" button
+local idcButton = Instance.new("TextButton")
+idcButton.Size = UDim2.new(0.4, 0, 0.2, 0)
+idcButton.Position = UDim2.new(0.55, 0, 0.75, 0)  -- Adjusted position for longer GUI
+idcButton.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
+idcButton.Text = "Idc 😡"
+idcButton.TextScaled = true
+idcButton.Parent = mainFrame
+
+-- Function to remove the GUI when any button is clicked
+local function removeGui()
+    screenGui:Destroy()
+end
+
+-- Connect button clicks to the function
+yayButton.MouseButton1Click:Connect(removeGui)
+idcButton.MouseButton1Click:Connect(removeGui)
+
 -- Create Phantom Forces window
 local PhantomForcesWindow = Library:NewWindow("Veux Hub")
 
